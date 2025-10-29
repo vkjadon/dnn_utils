@@ -1,0 +1,41 @@
+# Python cache and build files
+__pycache__/
+
+
+# Virtual environments
+.venv/
+.env/
+.tf_env/
+tf_env/
+
+# macOS files
+.DS_Store
+
+# Logs and temporary files
+*.log
+*.tmp
+
+# Jupyter notebooks checkpoints
+.ipynb_checkpoints/
+
+# TensorFlow / ML training artifacts
+checkpoints/
+saved_model/
+logs/
+events.out.tfevents.*
+
+# Datasets or large binary files
+*.h5
+*.csv
+*.npz
+*.npy
+*.pkl
+dataset/
+data/
+
+# IDE / Editor settings
+.vscode/
+.idea/
+
+# pyenv
+.python-version
