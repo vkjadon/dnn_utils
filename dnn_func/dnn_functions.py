@@ -18,7 +18,7 @@ def plot_image(train_x, train_y):
     plt.show()
 
 def load_dataset(dataset_path = "datasets"):
-    # print(f"\nUsing dataset from: {dataset_path}")
+    print(f"\nUsing dataset from: {dataset_path}")
 
     train_path = os.path.join(dataset_path, "train_catvnoncat.h5")
     test_path = os.path.join(dataset_path, "test_catvnoncat.h5")

@@ -30,7 +30,7 @@ if __name__ == "__main__":
     m_train = y_train.shape[1]
 
 # Load model
-    parameters, network_model, activations = load_model("trained_model.pkl")
+    parameters, network_model, activations = load_model("dnn_func/trained_model.pkl")
 
 # Training Accuracy
     A2 = predict(X_train, parameters, activations)
@@ -41,4 +41,4 @@ if __name__ == "__main__":
     X_test, y_test = reshape_and_normalize(test_set_x, test_y)
     A2 = predict(X_test, parameters, activations)
     y_pred = np.array([1 if pred > 0.5 else 0 for pred in A2[0]]).reshape(1, y_test.shape[1])
-    print(f"Training Accuracy : {(np.sum(y_pred == y_test))/y_test.shape[1]}")
+    print(f"Testing Accuracy : {(np.sum(y_pred == y_test))/y_test.shape[1]}")

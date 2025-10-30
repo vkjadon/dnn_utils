@@ -7,7 +7,7 @@ train_set_x, train_y, test_set_x, test_y = load_dataset()
 # Plot sample images from the dataset
 # plot_image(train_set_x, train_y)
 
-print(f"\nTraining set: {train_set_x.shape} {train_y.shape}")
+print(f"\nTraining Data set: {train_set_x.shape} {train_y.shape}")
 
 X_train, y_train = reshape_and_normalize(train_set_x, train_y)
 

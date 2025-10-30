@@ -66,4 +66,4 @@ for i in range(max_iteration):
 # plot_cost(cost, learning_rate)
 
 # Save the trained model
-save_model("trained_model.pkl", parameters, network_model, activations)
+save_model("dnn_func/trained_model.pkl", parameters, network_model, activations)

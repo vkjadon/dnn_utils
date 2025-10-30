@@ -13,7 +13,7 @@ def preprocess_image(image_path, target_size):
 
 if __name__ == "__main__":
     # === Load the trained model ===
-    parameters, network_model, activations = load_model("trained_model.pkl")
+    parameters, network_model, activations = load_model("dnn_func/trained_model.pkl")
 
     # === Prepare custom image ===
     target_size = (64, 64)  # must match training size
