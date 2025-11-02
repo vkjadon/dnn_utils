@@ -47,7 +47,7 @@ def initialize_parameters_rnd(output_size, input_size, layer):
   rng = np.random.default_rng(random_state)
 
   parameters = {}
-  W_matrix = rng.standard_normal((output_size, input_size)) * 0.01
+  W_matrix = rng.standard_normal((output_size, input_size)) * 0.1
   b_array = np.zeros((output_size, 1))
 
   Weight  = "W" + str(layer)
@@ -75,7 +75,7 @@ def forward_activation(z, activation="relu"):
 
 def backward_activation(dA, forward_activation_input, activation = "relu"):
   if activation=='relu':
-    dAdZ = [1 if z > 0 else 0 for z in forward_activation_input]
+    dAdZ = np.where(forward_activation_input > 0, 1, 0)
   elif activation=='sigmoid':
     s = 1/(1 + np.exp(-forward_activation_input))
     dAdZ = s * (1 - s)

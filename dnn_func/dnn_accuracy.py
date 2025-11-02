@@ -42,3 +42,4 @@ if __name__ == "__main__":
     A2 = predict(X_test, parameters, activations)
     y_pred = np.array([1 if pred > 0.5 else 0 for pred in A2[0]]).reshape(1, y_test.shape[1])
     print(f"Testing Accuracy : {(np.sum(y_pred == y_test))/y_test.shape[1]}")
+    

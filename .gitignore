@@ -5,6 +5,7 @@ __pycache__/
 # Virtual environments
 .venv/
 .env/
+env/
 .tf_env/
 tf_env/
 
