@@ -33,4 +33,5 @@ def download_catvnoncat(destination_folder="datasets"):
     print(f"Dataset files copied to: {os.path.abspath(destination_folder)}")
     return os.path.abspath(destination_folder)
 
-dataset_path = download_catvnoncat()
+if __name__ == "__main__":
+    dataset_path = download_catvnoncat()

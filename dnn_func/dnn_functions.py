@@ -4,19 +4,6 @@ import matplotlib.pyplot as plt
 import os
 import pickle
 
-def plot_image(train_x, train_y):
-    classes = ["non-cat", "cat"]
-
-    plt.figure(figsize=(10, 5))
-    for i in range(5):
-        plt.subplot(1, 5, i + 1)
-        plt.imshow(train_x[i])
-        plt.title(classes[int(train_y[0, i])])
-        plt.axis("off")
-
-    plt.suptitle("Sample Images from Cat vs Non-Cat Dataset", fontsize=14)
-    plt.show()
-
 def load_dataset(dataset_path = "datasets"):
     print(f"\nUsing dataset from: {dataset_path}")
 
@@ -34,6 +21,19 @@ def load_dataset(dataset_path = "datasets"):
     train_y = train_y.reshape((1, train_y.shape[0]))
     test_y = test_y.reshape((1, test_y.shape[0]))
     return train_x, train_y, test_x, test_y
+
+def plot_image(train_x, train_y):
+    classes = ["non-cat", "cat"]
+
+    plt.figure(figsize=(10, 5))
+    for i in range(5):
+        plt.subplot(1, 5, i + 1)
+        plt.imshow(train_x[i])
+        plt.title(classes[int(train_y[0, i])])
+        plt.axis("off")
+
+    plt.suptitle("Sample Images from Cat vs Non-Cat Dataset", fontsize=14)
+    plt.show()
 
 def reshape_and_normalize(train_set_x, train_y):
     train_set_x=train_set_x.reshape(train_set_x.shape[0],-1).T
@@ -73,6 +73,12 @@ def forward_activation(z, activation="relu"):
 
   return A
 
+def compute_cost(A, Y):
+    m = Y.shape[1]
+    cost = - np.sum(np.multiply(np.log(A), Y) + np.multiply((1 - Y), np.log(1 - A))) / m
+    cost = np.squeeze(cost)
+    return cost
+
 def backward_activation(dA, forward_activation_input, activation = "relu"):
   if activation=='relu':
     dAdZ = np.where(forward_activation_input > 0, 1, 0)
@@ -107,12 +113,6 @@ def update_parameters(parameters, grads, learning_rate):
         parameters[bias] = parameters[bias] - learning_rate * grads["db" + str(l + 1)]
     
     return parameters
-
-def compute_cost(A, Y):
-    m = Y.shape[1]
-    cost = - np.sum(np.multiply(np.log(A), Y) + np.multiply((1 - Y), np.log(1 - A))) / m
-    cost = np.squeeze(cost)
-    return cost
 
 def plot_cost(costs, learning_rate):
     plt.plot(costs)

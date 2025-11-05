@@ -30,7 +30,7 @@ parameters["W3"], parameters["b3"] = initialize_parameters_rnd(network_model[3],
 activations = ["relu", "relu", "sigmoid"]
 # activations = ["relu", "sigmoid"]
 
-learning_rate=0.001
+learning_rate=0.0075
 max_iteration=3000
 A0 = X_train
 
