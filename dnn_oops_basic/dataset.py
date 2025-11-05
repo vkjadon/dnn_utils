@@ -53,9 +53,7 @@ class Dataset:
         return self
 
     def get_train_data(self):
-        """Returns the training data."""
         return self.train_x, self.train_y
 
     def get_test_data(self):
-        """Returns the test data."""
         return self.test_x, self.test_y

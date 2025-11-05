@@ -1,6 +1,6 @@
 import numpy as np
 from dataset import Dataset
-from layers import Dense, Sigmoid, ReLU, Tanh
+from layers import Dense, Sigmoid, ReLU
 import loss as loss
 from utils import *
 
@@ -55,6 +55,7 @@ for layer in network:
   output = layer.forward(output)
 preds = (output > 0.5).astype(int)
 accuracy = np.mean(preds == y_train) * 100
+
 print(f"Training Accuracy of loaded model: {accuracy:.2f}%")
 
 plot_cost(cost, learning_rate)
