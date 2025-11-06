@@ -16,16 +16,17 @@ print(f"\nTraining set: {X_train.shape} {y_train.shape}")
 nx = X_train.shape[0]
 m_train = y_train.shape[1]
 
-network_model = [nx, 4, 1]
+network_model = [nx, 20, 4, 1]
 
 parameters = {}
 
 parameters["W1"], parameters["b1"] = initialize_parameters_rnd(network_model[1], network_model[0], 1).values()
 parameters["W2"], parameters["b2"] = initialize_parameters_rnd(network_model[2], network_model[1], 2).values()
+parameters["W3"], parameters["b3"] = initialize_parameters_rnd(network_model[3], network_model[2], 3).values()
 
 # print(parameters["W2"], parameters["b2"])
 
-activations = ["relu", "sigmoid"]
+activations = ["relu", "relu", "sigmoid"]
 
 learning_rate=0.0075
 max_iteration=3000
@@ -43,12 +44,19 @@ for i in range(max_iteration):
   Z2 = forward_linear(A1, parameters["W2"], parameters["b2"])
   A2 = forward_activation(Z2, activations[1])
 
+  # Forward Step : Layer-3
+  Z3 = forward_linear(A2, parameters["W3"], parameters["b3"])
+  A3 = forward_activation(Z3, activations[2])
+
   # Calculate Cost
-  cost[i] = compute_cost(A2, y_train)
+  cost[i] = compute_cost(A3, y_train)
   
   # Cost Derivatives : Output Layer
-  dA2 = - (np.divide(y_train, A2) - np.divide(1 - y_train, 1 - A2))
+  dA3 = - (np.divide(y_train, A3) - np.divide(1 - y_train, 1 - A3))
   
+  dZ3 = backward_activation(dA3, Z3, activations[2])
+  dA2, dW3, db3 = backward_linear(dZ3, A2, parameters["W3"])
+
   dZ2 = backward_activation(dA2, Z2, activations[1])
   dA1, dW2, db2 = backward_linear(dZ2, A1, parameters["W2"])
 
@@ -56,7 +64,7 @@ for i in range(max_iteration):
   dA0, dW1, db1 = backward_linear(dZ1, X_train, parameters["W1"])
 
   #Update Parameters
-  gradients = {"dW1" : dW1, "db1" : db1, "dW2" : dW2, "db2" : db2}
+  gradients = {"dW1" : dW1, "db1" : db1, "dW2" : dW2, "db2" : db2, "dW3" : dW3, "db3" : db3}
   parameters = update_parameters(parameters, gradients, learning_rate)
 
   # print(f"Parameters : {parameters}")
