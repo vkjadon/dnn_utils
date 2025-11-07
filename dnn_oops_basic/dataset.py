@@ -2,6 +2,8 @@ import os
 import h5py
 import numpy as np
 
+print("fff")
+
 class Dataset:
     def __init__(self, dataset_path="datasets"):
         """
